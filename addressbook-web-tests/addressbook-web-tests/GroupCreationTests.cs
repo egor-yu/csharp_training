@@ -46,7 +46,15 @@ namespace WebAddressbookTests
             Login("admin", "secret" );
             GoToGroupsPage();
             InitNewGroupCreation();
-            FillGroupForm("aaa", "sss", "ddd");
+
+            ContactGroup contantGroup = new ContactGroup
+            {
+                Name = "aaa",
+                Header = "sss",
+                Footer = "ddd"
+            };
+
+            FillGroupForm(contantGroup);
             SubmitGroupCreation();
             ReturnToGroupPage();
             Logout();
@@ -78,6 +86,19 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("group_footer")).Click();
             driver.FindElement(By.Name("group_footer")).Clear();
             driver.FindElement(By.Name("group_footer")).SendKeys(footer);
+        }
+
+        private void FillGroupForm(ContactGroup contactGroup)
+        {
+            driver.FindElement(By.Name("group_name")).Click();
+            driver.FindElement(By.Name("group_name")).Clear();
+            driver.FindElement(By.Name("group_name")).SendKeys(contactGroup.Name);
+            driver.FindElement(By.Name("group_header")).Click();
+            driver.FindElement(By.Name("group_header")).Clear();
+            driver.FindElement(By.Name("group_header")).SendKeys(contactGroup.Header);
+            driver.FindElement(By.Name("group_footer")).Click();
+            driver.FindElement(By.Name("group_footer")).Clear();
+            driver.FindElement(By.Name("group_footer")).SendKeys(contactGroup.Footer);
         }
 
         private void InitNewGroupCreation()
@@ -151,6 +172,20 @@ namespace WebAddressbookTests
             {
                 acceptNextAlert = true;
             }
+        }
+    }
+
+    public class ContactGroup
+    {
+        public string Name { get; set; }
+        public string Header { get; set; }
+        public string Footer { get; set; }
+
+        public ContactGroup()
+        {
+            this.Name = string.Empty;
+            this.Header = string.Empty;
+            this.Footer = string.Empty;
         }
     }
 }
