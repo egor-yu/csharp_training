@@ -21,7 +21,7 @@ namespace WebAddressbookTests
         public void SetupTest()
         {
             driver = new FirefoxDriver();
-            baseURL = "http://localhost:8080/addressbook/";
+            baseURL = "http://localhost:8080";
             verificationErrors = new StringBuilder();
         }
 
@@ -42,15 +42,20 @@ namespace WebAddressbookTests
         [Test]
         public void GroupCreationTest()
         {
-            driver.Navigate().GoToUrl(baseURL);
+            //Open home page
+            driver.Navigate().GoToUrl(baseURL + "/addressbook/");
+            //Login
             driver.FindElement(By.Name("user")).Click();
             driver.FindElement(By.Name("user")).Clear();
             driver.FindElement(By.Name("user")).SendKeys("admin");
             driver.FindElement(By.Name("pass")).Clear();
             driver.FindElement(By.Name("pass")).SendKeys("secret");
             driver.FindElement(By.XPath("//input[@value='Login']")).Click();
+            //Go to groups page
             driver.FindElement(By.LinkText("groups")).Click();
+            //Init new group creation
             driver.FindElement(By.XPath("//div[@id='content']/form/input[4]")).Click();
+            //Fill group form
             driver.FindElement(By.Name("group_name")).Click();
             driver.FindElement(By.Name("group_name")).Clear();
             driver.FindElement(By.Name("group_name")).SendKeys("q");
@@ -60,8 +65,11 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("group_footer")).Click();
             driver.FindElement(By.Name("group_footer")).Clear();
             driver.FindElement(By.Name("group_footer")).SendKeys("q");
+            //Submiy group creation
             driver.FindElement(By.Name("submit")).Click();
+            //Return to group page
             driver.FindElement(By.LinkText("groups")).Click();
+            //Logout
             driver.FindElement(By.LinkText("Logout")).Click();
         }
         private bool IsElementPresent(By by)
