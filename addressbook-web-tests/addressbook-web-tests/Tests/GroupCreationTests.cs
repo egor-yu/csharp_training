@@ -47,7 +47,7 @@ namespace WebAddressbookTests
             GoToGroupsPage();
             InitNewGroupCreation();
 
-            ContactGroup contantGroup = new ContactGroup
+            Group contantGroup = new Group
             {
                 Name = "aaa",
                 Header = "sss",
@@ -88,7 +88,7 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("group_footer")).SendKeys(footer);
         }
 
-        private void FillGroupForm(ContactGroup contactGroup)
+        private void FillGroupForm(Group contactGroup)
         {
             driver.FindElement(By.Name("group_name")).Click();
             driver.FindElement(By.Name("group_name")).Clear();
@@ -172,20 +172,6 @@ namespace WebAddressbookTests
             {
                 acceptNextAlert = true;
             }
-        }
-    }
-
-    public class ContactGroup
-    {
-        public string Name { get; set; }
-        public string Header { get; set; }
-        public string Footer { get; set; }
-
-        public ContactGroup()
-        {
-            this.Name = string.Empty;
-            this.Header = string.Empty;
-            this.Footer = string.Empty;
         }
     }
 }
