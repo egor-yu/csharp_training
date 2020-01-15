@@ -53,7 +53,7 @@ namespace WebAddressbookTests
                 LastName = "LastName",
             };
 
-            FillContactForm();
+            FillContactForm(contantGroup);
             SubmitContactCreation();
             ReturnToHomePage();
             Logout();
@@ -74,14 +74,14 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("submit")).Click();
         }
 
-        private void FillContactForm()
+        private void FillContactForm(Contact contactName)
         {
             driver.FindElement(By.Name("firstname")).Click();
             driver.FindElement(By.Name("firstname")).Clear();
-            driver.FindElement(By.Name("firstname")).SendKeys("FirstName");
+            driver.FindElement(By.Name("firstname")).SendKeys(contactName.FirstName);
             driver.FindElement(By.Name("lastname")).Click();
             driver.FindElement(By.Name("lastname")).Clear();
-            driver.FindElement(By.Name("lastname")).SendKeys("LastName");
+            driver.FindElement(By.Name("lastname")).SendKeys(contactName.LastName);
         }
 
         private void InitNewContactCreation()
